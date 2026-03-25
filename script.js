@@ -21,8 +21,8 @@ const validateForm = () => {
     const obj = {
         'full-name': fullNameEl.value !== '',
         email: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(emailEl.value),
-        'order-no': /^2024\d+$/.test(orderNoEl.value),
-        'product-code': /^[a-zA-Z]{2}\d\d-[a-zA-Z]\d\d\d-[a-zA-Z]{2}\d$/.test(productCodeEl.value),
+        'order-no': /^2024\d{6}$/.test(orderNoEl.value),
+        'product-code': /^[a-zA-Z]{2}\d\d\-[a-zA-Z]\d\d\d\-[a-zA-Z]{2}\d$/.test(productCodeEl.value),
         'quantity': Number(quantityEl.value) > 0 && quantityEl.value % 1 === 0,
         'complaints-group': Array.from(complaintsGroupInputEls).some(input => input.checked === true),
         'complaint-description': otherCompliantEl.checked ? (complaintDescriptionEl.value.length
@@ -45,7 +45,7 @@ form.addEventListener('submit', (e) => {
 fullNameEl.addEventListener('change', (e) => e.target.style.borderColor = validateForm()['full-name'] ? 'green' : 'red')
 emailEl.addEventListener('change', (e) => e.target.style.borderColor = validateForm()['email'] ? 'green' : 'red')
 orderNoEl.addEventListener('change', (e) => e.target.style.borderColor = validateForm()['order-no'] ? 'green' : 'red')
-productCodeEl.addEventListener('change', (e) => e.target.style.borderColor = validateForm()['production-code'] ? 'green' : 'red')
+productCodeEl.addEventListener('change', (e) => e.target.style.borderColor = validateForm()['product-code'] ? 'green' : 'red')
 quantityEl.addEventListener('change', (e) => e.target.style.borderColor = validateForm()['quantity'] ? 'green' : 'red');
 
 complaintDescriptionEl.addEventListener('change', (e) => e.target.style.borderColor = validateForm()['complaint-description'] ? 'green' : 'red');
