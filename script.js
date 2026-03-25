@@ -39,3 +39,5 @@ form.addEventListener('submit', (e) => {
     e.preventDefault;
     isValid(validateForm());
 })
+
+fullNameEl.addEventListener('change', (e) => e.target.style.borderColor = validateForm()['full-name'] ? 'green' : 'red')
