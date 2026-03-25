@@ -28,13 +28,14 @@ const validateForm = () => {
         'solution-description': otherSolutionEl.checked ? (solutionDescriptionEl.value.length
             >= 20) : true,
     }
-    debugger;
-
     return obj;
-
 }
+
+const isValid = obj => Object.values(obj).every(inp => inp);
+
+// debugger;
 
 form.addEventListener('submit', (e) => {
     e.preventDefault;
-    validateForm();
+    isValid(validateForm());
 })
