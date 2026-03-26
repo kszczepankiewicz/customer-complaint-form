@@ -1,5 +1,4 @@
 const $ = id => document.getElementById(id);
-const formEl = $('form');
 
 const fullName = $('full-name')
 const email = $('email');
@@ -12,14 +11,13 @@ const complaintDescription = $('complaint-description')
 const otherSolution = $('other-solution')
 const solutionDescription = $('solution-description')
 
-// Missing in DeepSeek
 const complaintsGroup = $('complaints-group')
 const complaintsGroupInputs = document.querySelectorAll('#complaints-group input')
 const solutionsGroup = $('solutions-group')
 const solutionsGroupInputs = document.querySelectorAll('#solutions-group input')
 
 const validateForm = () => {
-    const obj = {
+    return {
         'full-name': fullName.value !== '',
         'email': /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email.value),
         'order-no': /^2024\d{6}$/.test(orderNo.value),
@@ -27,20 +25,19 @@ const validateForm = () => {
         'quantity': Number(quantity.value) > 0 && quantity.value % 1 === 0,
         'complaints-group': Array.from(complaintsGroupInputs).some(input => input.checked === true),
         'complaint-description': otherCompliant.checked ? (complaintDescription.value.length
-            >= 20) : complaintDescription.value === '',
+            >= 20) : true,
         'solutions-group': Array.from(solutionsGroupInputs).some(input => input.checked === true),
         'solution-description': otherSolution.checked ? (solutionDescription.value.length
-            >= 20) : solutionDescription.value === '',
+            >= 20) : true,
     }
-    return obj;
 }
 
-const isValid = obj => Object.values(obj).every(Boolean);
+const isValid = obj => Object.values(obj).every(value => value === true);
 
-
-form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    isValid(validateForm());
+const form = document.querySelector('form');
+form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    isValid(validateForm())
 })
 
 fullName.addEventListener('change', (e) => e.target.style.borderColor = validateForm()['full-name'] ? 'green' : 'red')
