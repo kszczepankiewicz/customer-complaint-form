@@ -39,7 +39,7 @@ const isValid = obj => Object.values(obj).every(inp => inp);
 
 
 form.addEventListener('submit', (e) => {
-    e.preventDefault;
+    e.preventDefault();
     isValid(validateForm());
 })
 
