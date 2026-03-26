@@ -35,7 +35,7 @@ const validateForm = () => {
     return obj;
 }
 
-const isValid = obj => Object.values(obj).every(inp => inp);
+const isValid = obj => Object.values(obj).every(Boolean);
 
 
 form.addEventListener('submit', (e) => {
